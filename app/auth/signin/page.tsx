@@ -4,6 +4,18 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { signOut } from 'next-auth/react';
+
+const handleLogout = async () => {
+  try {
+    await signOut({
+      callbackUrl: '/', // Redirect to home or any other route after logout
+    });
+  } catch (error) {
+    console.error('Error logging out:', error);
+  }
+};
+
 
 const Signin: React.FC = () => {
   const [username, setUsername] = useState<string>("");

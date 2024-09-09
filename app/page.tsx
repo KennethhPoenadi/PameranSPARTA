@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import  NavBar  from "@/app/dashboard/navbar";
 
 const DynamicMapComponent = dynamic(() => import('./components/MapComponent'), { ssr: false });
 
@@ -26,7 +27,14 @@ const Home: React.FC = () => {
   return (
     <main style={{ height: '100vh' }}>
       {status === 'authenticated' ? ( // Only render map if authenticated
-        <DynamicMapComponent />
+      <section>
+        <div>
+          <NavBar/>
+        </div>
+        <div>
+          <DynamicMapComponent />
+        </div>
+        </section>
       ) : (
         <p>Please sign in to access the map.</p> // Message for unauthenticated users
       )}
