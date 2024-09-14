@@ -10,9 +10,9 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { signOut } from 'next-auth/react';  // Import signOut from next-auth
+import { signOut } from 'next-auth/react'; 
 
-// Map of links to display in the side navigation.
+
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   {
@@ -26,7 +26,7 @@ const links = [
     href: '/dashboard/about-us',
     icon: MagnifyingGlassIcon,
   },
-  // Sign Out option using signOut function
+  
   {
     name: 'Sign Out',
     href: '', 
@@ -40,7 +40,7 @@ export default function NavLinks() {
   // Handle logout
   const handleLogout = async () => {
     try {
-      await signOut({ callbackUrl: '/' }); // Specify the URL to redirect after logout
+      await signOut({ callbackUrl: '/' }); 
     } catch (error) {
       console.error('Error logging out:', error);
     }
@@ -50,8 +50,7 @@ export default function NavLinks() {
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
-        const isActive = pathname === link.href; // Determine if the link is active
-
+        const isActive = pathname === link.href; 
         if (link.name === 'Sign Out') {
           return (
             <button
@@ -60,8 +59,8 @@ export default function NavLinks() {
               className={clsx(
                 'flex text-lg font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
                 {
-                  'text-custom-green bg-light-green': isActive, // Active state
-                  'text-light-green': !isActive, // Non-active state
+                  'text-custom-green bg-light-green': isActive, 
+                  'text-light-green': !isActive, 
                 },
               )}
             >
@@ -71,7 +70,7 @@ export default function NavLinks() {
           );
         }
 
-        // Normal link for other navigation items
+
         return (
           <Link
             key={link.name}
@@ -79,8 +78,8 @@ export default function NavLinks() {
             className={clsx(
               'flex text-lg font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
               {
-                'text-custom-green bg-light-green': isActive, // Active state with text and background color
-                'text-light-green': !isActive, // Non-active state
+                'text-custom-green bg-light-green': isActive, 
+                'text-light-green': !isActive, 
               },
             )}
           >
@@ -91,4 +90,4 @@ export default function NavLinks() {
       })}
     </>
   );
-}
+};
