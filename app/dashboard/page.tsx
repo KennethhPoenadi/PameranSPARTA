@@ -152,8 +152,8 @@ const Dashboard: React.FC = () => {
             <div>No tasks available</div>
           )}
         </section>
-        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 w-60 h-90 shadow-2xl flex flex-col items-center justify-center'>
-          <div className='bg-white shadow-2xl p-3 rounded-full app text-custom-green'>
+        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 w-60 h-90 shadow-2xl flex flex-col items-center justify-center hover:scale-90 hover:shadow-lg transition'>
+          <div className='bg-white shadow-2xl p-3 rounded-full app text-custom-green mt-3'>
             <Plus strokeWidth={3} />
           </div>
           <p className='mt-3 font-semibold'>Add Task</p>
@@ -161,71 +161,88 @@ const Dashboard: React.FC = () => {
       </div>
 
       {isModalOpen && (
-        <div className='bg-white flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center px-4 py-9'>
-          <h2 className='text-xl'>Add New Task</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={newTask.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="latitude">Latitude:</label>
-              <input
-                type="number"
-                id="latitude"
-                name="latitude"
-                value={newTask.latitude}
-                onChange={handleChange}
-                step="any"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="longitude">Longitude:</label>
-              <input
-                type="number"
-                id="longitude"
-                name="longitude"
-                value={newTask.longitude}
-                onChange={handleChange}
-                step="any"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="description">Description:</label>
-              <textarea
-                id="description"
-                name="description"
-                value={newTask.description}
-                onChange={handleChange}
-                required
-              ></textarea>
-            </div>
-            <div>
-              <label htmlFor="reward">Reward:</label>
-              <input
-                type="text"
-                id="reward"
-                name="reward"
-                value={newTask.reward}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <button type="submit">Add Task</button>
-              <button type="button" onClick={() => setIsModalOpen(false)}>Cancel</button>
-            </div>
-          </form>
-        </div>
+        <div className='fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center'>
+          <div className='bg-white flex flex-col rounded-xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center px-5 py-9'>
+            <h2 className='text-xl'>Add New Task</h2>
+            <form onSubmit={handleSubmit} className='flex flex-col gap-1'>
+              <div>
+                <p>Name</p>
+                <label htmlFor="name"></label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={newTask.name}
+                  onChange={handleChange}
+                  placeholder="Type Task Name"
+                  className='px-3 py-2 rounded-xl border border-gray-500'
+                  required
+                />
+              </div>
+              <div>
+              <p>Latitude</p>
+                <label htmlFor="latitude"></label>
+                <input
+                  type="number"
+                  id="latitude"
+                  name="latitude"
+                  value={newTask.latitude}
+                  onChange={handleChange}
+                  placeholder="Location Latitude"
+                  className='px-3 py-2 rounded-xl border border-gray-500'
+                  step="any"
+                  required
+                />
+              </div>
+              <div>
+              <p>Longitude</p>
+                <label htmlFor="longitude"></label>
+                <input
+                  type="number"
+                  id="longitude"
+                  name="longitude"
+                  value={newTask.longitude}
+                  onChange={handleChange}
+                  placeholder="Location Longitude"
+                  className='px-3 py-2 rounded-xl border border-gray-500'
+                  step="any"
+                  required
+                />
+              </div>
+              <div>
+              <p>Description</p>
+                <label htmlFor="description"></label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={newTask.description}
+                  placeholder="Task Description"
+                  className='px-3 py-2 rounded-xl border border-gray-500'
+                  onChange={handleChange}
+                  required
+                ></textarea>
+              </div>
+              <div>
+              <p>Reward</p>
+                <label htmlFor="reward"></label>
+                <input
+                  type="number"
+                  id="reward"
+                  name="reward"
+                  value={newTask.reward}
+                  placeholder="Reward Points"
+                  className='px-3 py-2 rounded-xl border border-gray-500'
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className='flex flex-row gap-2 '>
+                <button type="submit" className='bg-light-green hover:bg-custom-green hover:text-light-green transition px-3 py-2 rounded-lg mt-1'>Add Task</button>
+                <button type="button" className='hover:bg-gray-200 px-3 py-2 rounded-lg transition' onClick={() => setIsModalOpen(false)}>Cancel</button>
+              </div>
+            </form>
+          </div>
+          </div>
       )}
     </main>
   );
