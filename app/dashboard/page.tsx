@@ -143,7 +143,7 @@ const Dashboard: React.FC = () => {
                       <p><strong>Latitude:</strong> {task.latitude}</p>
                       <p><strong>Longitude:</strong> {task.longitude}</p>
                     </div>
-                    <button onClick={() => markAsDone(task._id)} className='mt-4 bg-light-green px-3 py-2 rounded-xl hover:shadow-md hover:scale-125 transition text-custom-green font-semibold '>Mark as Done</button>
+                    <button onClick={() => markAsDone(task._id)} className='mt-4 bg-light-green px-3 py-2 rounded-xl hover:shadow-md hover:bg-[#006400] hover:text-white hover:scale-125 transition text-custom-green font-semibold '>Mark as Done</button>
                   </div>
                 </div>
               </div>
@@ -152,8 +152,8 @@ const Dashboard: React.FC = () => {
             <div>No tasks available</div>
           )}
         </section>
-        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 w-60 h-90 shadow-2xl flex flex-col items-center justify-center hover:scale-90 hover:shadow-lg transition'>
-          <div className='bg-white shadow-2xl p-3 rounded-full app text-custom-green mt-3'>
+        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 w-60 h-90 shadow-2xl flex flex-col items-center justify-center hover:scale-90 hover:shadow-lg hover:bg-[#006400] hover:text-white transition'>
+          <div className='min-h-screen bg-white shadow-2xl p-3 rounded-full app text-custom-green mt-3'>
             <Plus strokeWidth={3} />
           </div>
           <p className='mt-3 font-semibold'>Add Task</p>
@@ -237,12 +237,12 @@ const Dashboard: React.FC = () => {
                 />
               </div>
               <div className='flex flex-row gap-2 '>
-                <button type="submit" className='bg-light-green hover:bg-custom-green hover:text-light-green transition px-3 py-2 rounded-lg mt-1'>Add Task</button>
-                <button type="button" className='hover:bg-gray-200 px-3 py-2 rounded-lg transition' onClick={() => setIsModalOpen(false)}>Cancel</button>
+                <button type="submit" className='bg-light-green hover:bg-[#006400] hover:text-light-green transition px-3 py-2 rounded-lg mt-1'>Add Task</button>
+                <button type="button" className='hover:bg-[#006400] hover:text-white px-3 py-2 rounded-lg transition' onClick={() => setIsModalOpen(false)}>Cancel</button>
               </div>
             </form>
           </div>
-          </div>
+        </div>
       )}
     </main>
   );

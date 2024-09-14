@@ -13,7 +13,6 @@ import clsx from 'clsx';
 import { signOut } from 'next-auth/react';  // Import signOut from next-auth
 
 // Map of links to display in the side navigation.
-// Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/dashboard', icon: HomeIcon },
   {
@@ -27,10 +26,10 @@ const links = [
     href: '/dashboard/about-us',
     icon: MagnifyingGlassIcon,
   },
-  // Removed href from Sign Out to use signOut function
+  // Sign Out option using signOut function
   {
     name: 'Sign Out',
-    href: '', // This will be replaced by the logout function
+    href: '', 
     icon: PowerIcon,
   },
 ];
@@ -51,17 +50,18 @@ export default function NavLinks() {
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
-        // Conditional rendering to handle Sign Out action
+        const isActive = pathname === link.href; // Determine if the link is active
+
         if (link.name === 'Sign Out') {
           return (
             <button
               key={link.name}
-              onClick={handleLogout} // Call handleLogout on click
+              onClick={handleLogout} 
               className={clsx(
-                'flex text-lg text-green-100 font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
+                'flex text-lg font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
                 {
-                  ' text-custom-green bg-light-green': pathname === link.href, // Active state styles
-                  'text-light-green': pathname !== link.href, // Non-active state text color
+                  'text-custom-green bg-light-green': isActive, // Active state
+                  'text-light-green': !isActive, // Non-active state
                 },
               )}
             >
@@ -77,10 +77,10 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex text-lg text-green-100 font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
+              'flex text-lg font-semibold hover:bg-light-green hover:text-custom-green transition rounded-full gap-2 items-center justify-center px-5 py-3',
               {
-                ' text-custom-green bg-light-green': pathname === link.href, // Active state styles
-                'text-light-green': pathname !== link.href, // Non-active state text color
+                'text-custom-green bg-light-green': isActive, // Active state with text and background color
+                'text-light-green': !isActive, // Non-active state
               },
             )}
           >
