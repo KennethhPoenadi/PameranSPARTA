@@ -122,7 +122,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <main className="bg-gradient-to-b from-yellow-100 to-green-300 p-4 w-full">
+    <main className="bg-gradient-to-b from-yellow-100 to-green-300 min-h-screen p-4 w-full">
       <h2 className='text-4xl text-green-800 m-4'>Welcome, {username}</h2>
       <div className='flex flex-row'>
         <section className='flex'>
@@ -149,11 +149,11 @@ const Dashboard: React.FC = () => {
               </div>
             ))
           ) : (
-            <div>No tasks available</div>
+            <div></div>
           )}
         </section>
-        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 w-60 h-90 shadow-2xl flex flex-col items-center justify-center hover:scale-90 hover:shadow-lg hover:bg-[#006400] hover:text-white transition'>
-          <div className='min-h-screen bg-white shadow-2xl p-3 rounded-full app text-custom-green mt-3'>
+        <button onClick={() => setIsModalOpen(true)} className='bg-transparent backdrop-blur-xl rounded-2xl m-5 py-44 px-20 shadow-2xl flex flex-col items-center justify-center hover:scale-90 hover:shadow-lg hover:bg-[#006400] hover:text-white transition'>
+          <div className=' bg-white shadow-2xl p-3 rounded-full app text-custom-green mt-3'>
             <Plus strokeWidth={3} />
           </div>
           <p className='mt-3 font-semibold'>Add Task</p>
@@ -236,7 +236,7 @@ const Dashboard: React.FC = () => {
                   required
                 />
               </div>
-              <div className='flex flex-row gap-2 '>
+              <div className='flex flex-row gap-2'>
                 <button type="submit" className='bg-light-green hover:bg-[#006400] hover:text-light-green transition px-3 py-2 rounded-lg mt-1'>Add Task</button>
                 <button type="button" className='hover:bg-[#006400] hover:text-white px-3 py-2 rounded-lg transition' onClick={() => setIsModalOpen(false)}>Cancel</button>
               </div>
