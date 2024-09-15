@@ -28,6 +28,7 @@ const Dashboard: React.FC = () => {
     longitude: string;
     description: string;
     reward: string;
+    image?:string;
   }>({
     name: '',
     latitude: '',
@@ -35,6 +36,25 @@ const Dashboard: React.FC = () => {
     description: '',
     reward: ''
   });
+
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      setFile(files[0]);
+    }
+  };
+
+  const convertToBase64 = (file: File | null) => {
+    if (!file) return Promise.resolve(null);
+    return new Promise<string | null>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   useEffect(() => {
     if (status === 'loading') {
@@ -72,10 +92,12 @@ const Dashboard: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const base64Image = await convertToBase64(file)
     const taskData = {
       ...newTask,
       latitude: parseFloat(newTask.latitude),
-      longitude: parseFloat(newTask.longitude)
+      longitude: parseFloat(newTask.longitude),
+      image: base64Image
     };
     try {
       const response = await fetch('/api/places', {
@@ -236,6 +258,17 @@ const Dashboard: React.FC = () => {
                   required
                 />
               </div>
+              <div>
+                <label htmlFor="image">Image: </label>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleFileChange}
+                  accept="image/*"
+                />
+              </div>
+
               <div className='flex flex-row gap-2'>
                 <button type="submit" className='bg-light-green hover:bg-[#006400] hover:text-light-green transition px-3 py-2 rounded-lg mt-1'>Add Task</button>
                 <button type="button" className='hover:bg-[#006400] hover:text-white px-3 py-2 rounded-lg transition' onClick={() => setIsModalOpen(false)}>Cancel</button>

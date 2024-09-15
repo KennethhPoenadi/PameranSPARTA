@@ -20,8 +20,8 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await connectToDatabase();
-    const { name, latitude, longitude, description, reward } = await request.json();
-    const newPlace = new Place({ name, latitude, longitude, description, reward });
+    const { name, latitude, longitude, description, reward, image } = await request.json();
+    const newPlace = new Place({ name, latitude, longitude, description, reward, image });
     await newPlace.save();
     return new Response(JSON.stringify({ place: newPlace }), {
       status: 201,
